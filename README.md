@@ -1,32 +1,52 @@
-Jenkins Pipeline Shared Library Sample
-This project provides easy example of shared library which can be used into Jenkins pipeline.
+****Jenkins global shared library****
 
-Setup instructions
+This project will guide us how to create a shared gloabl library
 
-In Jenkins, go to Manage Jenkins → Configure System. Under Global Pipeline Libraries, add a library with the following settings:
-Library name: jenkins-pipeline-shared-lib-sample
-Default version: Specify a Git reference (branch or commit SHA), e.g. master
-Retrieval method: Modern SCM
-Select the Git type
-Project repository: https://github.com/sak1477/SharedLibrary.git
-Credentials: (leave blank)
-You may have to turn off ssl verification using: git.exe config --global http.sslVerify false
-Then create a Jenkins job with the following pipeline (note that the underscore _ is not a typo):
-@Library('jenkins-pipeline-shared-lib-sample')_
+Configure Jenkins using above project..
 
-stage('Print Build Info') {
-    printBuildinfo {
-        name = "Sample Name"
-    }
-} stage('Disable balancer') {
-    disableBalancerUtils()
-} stage('Deploy') {
-    deploy()
-} stage('Enable balancer') {
-    enableBalancerUtils()
-} stage('Check Status') {
-    checkStatus()
+Steps to configure shared library
+
+** Manage Jenkins -->  Configure System --> Global shared Pipeline
+
+
+Configure Library 
+
+Name should be as your shared library name
+Default version can be branch,commit sha,Git Tag etc .. example master..
+Check Modern SCM Option..
+
+Click on Git 
+Add Git Url and Credentials
+
+Our Jenkins shared pipeline set up is ready..
+
+
+now use the following pipeline to run shared library
+
+
+********************************************************************************
+
+@Library('cicd_sample')_
+
+stage('checkout') {
+    Checkout()
 }
-Run job!
+stage('Build') { 
+   Build()
+} 
+stage('SonarAnalysis'){
+    SonarAnalysis()
+}
+stage('CreateArtifact') {
+    CreateArtifact()
+}
+stage('SMSNotification'){
+    SMSNotification()
+}
+stage('UploadArtifact'){
+    UploadArtifact()
+}
 
-SharedLibrary
+***********************************************************************************
+
+------------Just Run Jenkins Job-------------
