@@ -1,4 +1,4 @@
-def CreateArtifact() {
+def call() {
     echo "------Artifact Creation----"
 
     return this

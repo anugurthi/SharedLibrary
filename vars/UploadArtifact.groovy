@@ -1,4 +1,4 @@
-def uploadArtifact() {
+def call() {
     echo "------uploadArtifact----"
 
     return this

@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def checkout() {
+def call() {
     echo "------Code chekout----"
 
     return this

@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def Build() {
+def call() {
     echo "------Build/Compileation of code----"
 
     return this

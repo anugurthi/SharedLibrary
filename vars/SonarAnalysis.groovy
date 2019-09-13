@@ -1,9 +1,5 @@
-#!/usr/bin/env groovy
+	def call() {
+		echo "------Sonar Analysis----"
 
-def call(body) {
-    echo "Disable balancer"
-
-    script:this.echo(new Sample(1, 3).toString())
-
-    return this
-}
+		return this
+	}
